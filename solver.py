@@ -12,9 +12,9 @@ def solve(equation):
         raise NotLinearEquationError()
     expression = equation.replace("=", "-(") + ")"
     try:
-        c = eval(expression, {"x": 1j})
+        evaluated = eval(expression, {"x": 1j})
     except (SyntaxError, TypeError, NameError):
         raise NotLinearEquationError()
-    if not c.imag:
+    if not evaluated.imag:
         raise NotLinearEquationError()
-    return -c.real/c.imag
+    return -evaluated.real/evaluated.imag
